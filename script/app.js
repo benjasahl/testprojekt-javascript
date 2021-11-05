@@ -49,17 +49,13 @@ const openCardModal = () => {
 };
 
 //Gallery modal
+const startImage = document.getElementById("start-image");
+
 const galleryModal = document.getElementById("gallery-modal-wrapper");
 
 const galleryImage = document.getElementsByClassName("image");
 
 const galleryContent = document.getElementById("gallery-modal-content");
-
-const mainImage = document.getElementById("main-image");
-
-const setMainImage = (src) => {
-  document.getElementById("main-image").setAttribute("src", src);
-};
 
 const closeGalleryModal = () => {
   document.getElementById("close-gallery").addEventListener("click", () => {
@@ -67,16 +63,50 @@ const closeGalleryModal = () => {
   });
 };
 
+const imageSrc = [
+  {
+    name: "./media/img/gallery-elephant.jpg",
+  },
+  {
+    name: "./media/img/gallery-monkeys.jpg",
+  },
+  {
+    name: "./media/img/gallery-panda.jpg",
+  },
+  {
+    name: "./media/img/gallery-seal.jpg",
+  },
+  {
+    name: "./media/img/gallery-bird.jpg",
+  },
+  {
+    name: "./media/img/gallery-alpacka.jpg",
+  },
+  {
+    name: "./media/img/gallery-lizard.jpg",
+  },
+];
+
 const openGalleryModal = () => {
   for (let i = 0; i < galleryImage.length; i++) {
     galleryImage[i].addEventListener("click", () => {
       galleryModal.style.display = "flex";
-    
+      for (let j = 0; j < imageSrc.length; j++) {
+        if (i === j) {
+          startImage.setAttribute("src", imageSrc[i].name);
+        }
+      }
     });
   }
 };
 
+const thumbnails = document.getElementById("thumbnails-wrapper");
+
 window.addEventListener("load", () => {
+ /* thumbnails.innerHTML = imageSrc.map((img) => {
+    `<img src="${img.name}">`;
+  }); */
+
   openCardModal();
   closeCardModal();
   openGalleryModal();
